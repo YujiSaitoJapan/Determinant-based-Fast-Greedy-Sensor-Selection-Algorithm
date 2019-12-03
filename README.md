@@ -4,8 +4,30 @@ This repository contains Matlab (R2013a) code to reproduce results for the Deter
 Ocean sea surface temperature data is provided by NOAA.
 NOAA_OI_SST_V2 data provided by the NOAA/OAR/ESRL PSD, Boulder, Colorado, USA, from their Web site at https://www.esrl.noaa.gov/psd/ in any documents or publications using these data
 
-## LICENSE
+## License
 [MIT-License](https://github.com/YujiSaitoJapan/Determinant-based-Fast-Greedy-Sensor-Selection-Algorithm/blob/add-license-1/LICENSE)
+
+## Code
+- main.m
+  - NOAA_SST.m (reading data)
+  - make_ensopod.m (truncating data)
+  (sensor selection)
+  - random_sensor.m
+  - convex_sensor.m
+  - QR_sensor.m
+  - DG_sensor.m
+  - QD_sensor.m
+  
+  - NOAA_SST_Perror.m (calculating percent reconstruction error)
+  - det_calculation.m
+  - averaged_operation.m
+    - save_operation.m
+  - data_organization.m
+  
+  - NOAA_SST_Video.m (making video)
+  - makevideo_ensotrue.m (making video)
+    - video_maker.m
+      - display_sensors_color_for_movie.m
 
 ## Author
 SAITO Yuji
