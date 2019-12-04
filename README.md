@@ -6,8 +6,8 @@ Due to GitHub file size limitations, a dataset is linked online:[NOAA Optimum In
 - lsmask.nc
 
 
-Ocean sea surface temperature data is provided by NOAA.
-NOAA_OI_SST_V2 data provided by the NOAA/OAR/ESRL PSD, Boulder, Colorado, USA, from their Web site at https://www.esrl.noaa.gov/psd/ in any documents or publications using these data
+**Ocean sea surface temperature data is provided by NOAA.
+NOAA_OI_SST_V2 data provided by the NOAA/OAR/ESRL PSD, Boulder, Colorado, USA, from their Web site at https://www.esrl.noaa.gov/psd/.**
 
 ## License
 [MIT-License](https://github.com/YujiSaitoJapan/Determinant-based-Fast-Greedy-Sensor-Selection-Algorithm/blob/add-license-1/LICENSE)
