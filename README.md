@@ -1,6 +1,11 @@
 # Determinant-based-Fast-Greedy-Sensor-Selection-Algorithm
 This repository contains Matlab (R2013a) code to reproduce results for the Determinant-based Fast Greedy Sensor Selection Algorithm.
 
+Due to GitHub file size limitations, analyzed datasets is linked online: [NOAA Optimum Interpolation (OI) Sea Surface Temperature (SST) V2] (https://www.esrl.noaa.gov/psd/data/gridded/data.noaa.oisst.v2.html)
+- sst.wkmean.1990-present.nc
+- lsmask.nc
+
+
 Ocean sea surface temperature data is provided by NOAA.
 NOAA_OI_SST_V2 data provided by the NOAA/OAR/ESRL PSD, Boulder, Colorado, USA, from their Web site at https://www.esrl.noaa.gov/psd/ in any documents or publications using these data
 
