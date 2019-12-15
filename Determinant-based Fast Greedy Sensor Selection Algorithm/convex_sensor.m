@@ -1,5 +1,5 @@
-function [time_convex, H, sensors]=convex_sensor(Psi, r, p, s, n, maxiteration)
+function [time_convex, H, sensors]=convex_sensor(Psi, r, p, n, maxiteration)
          tic;
-         [sensors,~]=sensor_convex(Psi(:,1:r), r, p,s,maxiteration);
+         [sensors,~]=sensor_convex(Psi(:,1:r), r, p,maxiteration);
          time_convex=toc;
-         [H]=makesensor_matrix(s, p, n, sensors);
+         [H]=makesensor_matrix(p, n, sensors);

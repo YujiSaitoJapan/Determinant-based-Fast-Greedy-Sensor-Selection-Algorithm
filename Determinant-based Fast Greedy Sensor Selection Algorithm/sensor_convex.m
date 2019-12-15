@@ -1,9 +1,8 @@
-function [isensors,zhat]=sensor_convex(U, r, p, s,maxiteration)
+function [isensors,zhat]=sensor_convex(U, r, p, maxiteration)
 [n,~]=size(U);
 UU=[];
-for i=1:s
-UU(:,:,i)=U((1+(i-1)*n/s):(i*n/s) ,1:r); 
-end
+
+UU(:,:,1)=U(1:n,1:r); 
+
 [zhat, ~, ~] = sens_sel_approxnt_vec(UU, p, maxiteration);
 isensors = find(zhat);
-H=zeros(p,n);    

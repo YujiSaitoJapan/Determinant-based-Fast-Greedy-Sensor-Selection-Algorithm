@@ -7,8 +7,8 @@ function [Psi,S,V,Xorg,Itest,TT,mask, meansst, Y, x, time]=NOAA_SST
 % each element of time array is a new week, in units of days
 t0=datenum('1-Jan-1800 00:00:00')+time(1);
 tfin=datenum('1-Jan-1800 00:00:00')+time(end);
-datestr(t0,'yyyy/mm/dd')
-datestr(tfin,'yyyy/mm/dd')
+datestr(t0,'yyyy/mm/dd');
+datestr(tfin,'yyyy/mm/dd');
 
 [m,n,p] = size(sst);
 N = m*n;
@@ -44,6 +44,6 @@ for i=1:TT%num_video
     x(:,i) = Y(:,Itest(i))-meansst;
 end
 
- text='Complete!';
+ text='Complete Readinng/Arranging a NOAA-SST dataset!';
  disp(text);
 end 

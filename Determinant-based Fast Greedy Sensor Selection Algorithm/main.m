@@ -8,7 +8,6 @@ num_problem=2; %%NOAA-SST
 % !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 %% Initinal Values
-s=1;
 r=10;
 num=r+10;
 maxiteration=200;
@@ -45,25 +44,27 @@ for q=1:10%num %Parameter loop
         
         %% Sparse sensor matrix
         % Random selection
-        [time_rand(v,w+1), H_rand,sensors_rand]=random_sensor(n,p,s);
+        [time_rand(v,w+1), H_rand,sensors_rand]=random_sensor(n,p);
         [det_rand(v,w+1)]=det_calculation(p,r,H_rand,Psi);
         % convex approximation
-       [time_convex(v,w+1), H_convex,sensors_convex]=convex_sensor(Psi, r, p, s, n, maxiteration);
-        [det_convex(v,w+1)]=det_calculation(p,r,H_convex,Psi);
-        %!! I recommend you use the following dummy values if you do not need the solution in the convex approximation in NOAA-SST. 
-        %         time_convex(v,w+1)=time_rand(v,w+1);
-        %         det_convex(v,w+1)=det_rand(v,w+1);
-        %         H_convex=H_rand;
-        %         sensors_convex=sensors_rand;
+     %  [time_convex(v,w+1), H_convex,sensors_convex]=convex_sensor(Psi, r, p, n, maxiteration);
+     %   [det_convex(v,w+1)]=det_calculation(p,r,H_convex,Psi);
+       
+     %!! I recommend you use the following dummy values if you do not need the solution in the convex approximation in NOAA-SST. 
+        
+                time_convex(v,w+1)=time_rand(v,w+1);
+                det_convex(v,w+1)=det_rand(v,w+1);
+                H_convex=H_rand;
+                sensors_convex=sensors_rand;
         
         % QR
-        [time_QR(v,w+1), H_QR, sensors_QR]=QR_sensor(Psi, r, p, s, n);
+        [time_QR(v,w+1), H_QR, sensors_QR]=QR_sensor(Psi, r, p, n);
         [det_QR(v,w+1)]=det_calculation(p,r,H_QR,Psi);
         % DG
-        [time_DG(v,w+1), H_DG, sensors_DG]=DG_sensor(Psi, r, p, s, n);
+        [time_DG(v,w+1), H_DG, sensors_DG]=DG_sensor(Psi, r, p, n);
         [det_DG(v,w+1)]=det_calculation(p,r,H_DG,Psi);
         % QD
-        [time_QD(v,w+1), H_QD, sensors_QD]=QD_sensor(Psi, r, p, s, n);
+        [time_QD(v,w+1), H_QD, sensors_QD]=QD_sensor(Psi, r, p, n);
         [det_QD(v,w+1)]=det_calculation(p,r,H_QD,Psi);
         
         %% Percent error calculation
