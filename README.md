@@ -14,22 +14,29 @@ NOAA_OI_SST_V2 data provided by the NOAA/OAR/ESRL PSD, Boulder, Colorado, USA, f
 
 ## Code
 - main.m
-  - NOAA_SST.m (reading data)
+  - read_NOAA_SST.m (reading data)
   - make_ensopod.m (truncating data)
-  (sensor selection)
-  - random_sensor.m
-  - convex_sensor.m
-  - QR_sensor.m
-  - DG_sensor.m
-  - QD_sensor.m
+ 
+ (sensor selection)
+  - sensor_random.m
+  - sensor_convex.m
+    - subsensor_convex.m
+      - sens_sel_approxnt_vec
+  - sensor_QR.m
+    - subsensor_QR.m
+  - sensor_DG.m
+    - subsensor_DG_r.m (p<=r)
+    - subsensor_DG_p.m (p>r)
+  - sensor_QD.m
   
-  - NOAA_SST_Perror.m (calculating percent reconstruction error)
-  - det_calculation.m
+  - calculation_error.m (calculating percent reconstruction error)
+    - subcalculation_error.m
+  - calculation_det.m
   - averaged_operation.m
     - save_operation.m
   - data_organization.m
   
-  - NOAA_SST_Video.m (making video)
+  - makevideo_NOAASST.m (making video)
   - makevideo_ensotrue.m (making video)
     - video_maker.m
       - display_sensors_color_for_movie.m
