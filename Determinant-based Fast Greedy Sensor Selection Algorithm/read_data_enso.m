@@ -4,7 +4,6 @@ function [ Lat, Lon, time, mask, X ] = read_data_enso( filename, maskname )
 
 X = ncread(filename,'sst');
 time = ncread(filename,'time'); %days
-%time = (time-time(1))/7; % time in weeks
 
 lat = ncread(filename,'lat');
 lon = ncread(filename,'lon');

@@ -10,23 +10,22 @@ num_problem=2; %%NOAA-SST
 %% Initinal Values
 r=10;
 num=r+10;
-maxiteration=200;
-n=2000;
-
+maxiteration=200; % for convex
+n=2000; %for Randomized sensor matri
 num_ave=1;
+TT=52*10;%10-years;
+num_video=1;% maxmum:TT
 
-if  num_problem == 2%%NOAA-SST  
-    [Psi,S,V,Xorg,Itest,TT,mask, meansst, Y, x, time]=NOAA_SST; %Reading a NOAA-SST
+if  num_problem == 2%%NOAA-SST
+    [Psi,S,V,Xorg,Itest,mask, meansst, Y, x, time]=read_NOAA_SST(TT); %Reading a NOAA-SST
     [n,~]=size(Psi);
-    
     %Need movie?
     mkdir('movie');
-    num_video=1;% maxmum:1000
     makevideo_ensotrue(num_video, Y, Itest, meansst, Psi,  mask, time, r) % select validation snapshot
 end
 
 v=0;
-for q=1:10%num %Parameter loop
+for q=1:1%num %Parameter loop
     v=v+1; %Counter
     p=q; %Parameter selection
     
@@ -44,35 +43,34 @@ for q=1:10%num %Parameter loop
         
         %% Sparse sensor matrix
         % Random selection
-        [time_rand(v,w+1), H_rand,sensors_rand]=random_sensor(n,p);
-        [det_rand(v,w+1)]=det_calculation(p,r,H_rand,Psi);
+        [time_rand(v,w+1), H_rand,sensors_rand]=sensor_random(n,p);
+        [det_rand(v,w+1)]=calculation_det(p,r,H_rand,Psi);
         % convex approximation
-     %  [time_convex(v,w+1), H_convex,sensors_convex]=convex_sensor(Psi, r, p, n, maxiteration);
-     %   [det_convex(v,w+1)]=det_calculation(p,r,H_convex,Psi);
-       
-     %!! I recommend you use the following dummy values if you do not need the solution in the convex approximation in NOAA-SST. 
-        
-                time_convex(v,w+1)=time_rand(v,w+1);
-                det_convex(v,w+1)=det_rand(v,w+1);
-                H_convex=H_rand;
-                sensors_convex=sensors_rand;
-        
+        %!! I recommend you use the following dummy values if you do not need the solution in the convex approximation in NOAA-SST.
+        %  [time_convex(v,w+1), H_convex,sensors_convex]=sensor_convex(Psi, r, p, n, maxiteration);
+        %   [det_convex(v,w+1)]=calculation_det(p,r,H_convex,Psi);
+        %***************************************
+        time_convex(v,w+1)=time_rand(v,w+1);
+        det_convex(v,w+1)=det_rand(v,w+1);
+        H_convex=H_rand;
+        sensors_convex=sensors_rand;
+        %***************************************
         % QR
-        [time_QR(v,w+1), H_QR, sensors_QR]=QR_sensor(Psi, r, p, n);
-        [det_QR(v,w+1)]=det_calculation(p,r,H_QR,Psi);
+        [time_QR(v,w+1), H_QR, sensors_QR]=sensor_QR(Psi, r, p, n);
+        [det_QR(v,w+1)]=calculation_det(p,r,H_QR,Psi);
         % DG
-        [time_DG(v,w+1), H_DG, sensors_DG]=DG_sensor(Psi, r, p, n);
-        [det_DG(v,w+1)]=det_calculation(p,r,H_DG,Psi);
+        [time_DG(v,w+1), H_DG, sensors_DG]=sensor_DG(Psi, r, p, n);
+        [det_DG(v,w+1)]=calculation_det(p,r,H_DG,Psi);
         % QD
-        [time_QD(v,w+1), H_QD, sensors_QD]=QD_sensor(Psi, r, p, n);
-        [det_QD(v,w+1)]=det_calculation(p,r,H_QD,Psi);
+        [time_QD(v,w+1), H_QD, sensors_QD]=sensor_QD(Psi, r, p, n);
+        [det_QD(v,w+1)]=calculation_det(p,r,H_QD,Psi);
         
         %% Percent error calculation
         if  num_problem == 2 %NOAA-SST
             [Xestimate_rand, Xestimate_convex, Xestimate_QR,Xestimate_DG,Xestimate_QD,...
                 Perror_rand(v,w+1),Perror_std_rand(v,w+1),Perror_convex(v,1),Perror_std_convex(v,1),...
                 Perror_QR(v,1),Perror_std_QR(v,1),Perror_DG(v,1),Perror_std_DG(v,1),Perror_QD(v,1),Perror_std_QD(v,1)]=...
-                NOAA_SST_Perror(v, q, w, r, TT, Xorg, Psi, H_rand, H_convex, H_QR, H_DG, H_QD);
+                calculation_error(v, q, w, r, TT, Xorg, Psi, H_rand, H_convex, H_QR, H_DG, H_QD);
             Perror_rand(v,1)=mean(Perror_rand(v,2:w+1));
             Perror_std_rand(v,1)=mean(Perror_std_rand(v,2:w+1));
         end
@@ -113,7 +111,7 @@ for q=1:10%num %Parameter loop
         =averaged_operation(v,w,time_rand,time_convex,time_QR,time_DG,time_QD,det_rand,det_convex,det_QR,det_DG,det_QD);
     %% Video
     if  num_problem == 2 %NOAA-SST
-        NOAA_SST_Video(r, num_video, x, Y, Itest, meansst, Psi, mask, time, p, ...
+        makevideo_NOAASST(r, num_video, x, Y, Itest, meansst, Psi, mask, time, p, ...
             sensors_rand, sensors_convex, sensors_QR, sensors_DG, sensors_QD, ...
             Xestimate_rand, Xestimate_convex, Xestimate_QR,Xestimate_DG,Xestimate_QD)
     end
@@ -133,7 +131,7 @@ save('det_random.mat','det');
 save('Normalized_det_random.mat','Normalized_det');
 
 warning('on','all')
-        %         time_convex(v,w+1)=time_rand(v,w+1);
-        %         det_convex(v,w+1)=det_rand(v,w+1);
-        %         H_convex=H_rand;
-        %         sensors_convex=sensors_rand;
+%         time_convex(v,w+1)=time_rand(v,w+1);
+%         det_convex(v,w+1)=det_rand(v,w+1);
+%         H_convex=H_rand;
+%         sensors_convex=sensors_rand;

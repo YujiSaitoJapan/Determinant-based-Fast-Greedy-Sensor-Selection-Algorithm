@@ -4,7 +4,7 @@ open(v);
 
      for i=1:num_video%length(time) 
              x = Y(:,Itest(i))-meansst;
-             bounds = [min(x+meansst) max(x+meansst)];
+        %     bounds = [min(x+meansst) max(x+meansst)];
               figure(1);           
             if p==1
                display_sensors_color_for_movie(x+meansst,mask,[], filename,time(i),r,p);
