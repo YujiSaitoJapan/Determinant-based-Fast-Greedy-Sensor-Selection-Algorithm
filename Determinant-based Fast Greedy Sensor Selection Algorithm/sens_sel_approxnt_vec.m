@@ -1,5 +1,5 @@
 function [zhat, L, ztilde, Utilde] = sens_sel_approxnt_vec(A, k, maxiteration) 
-% Modified by Tohoku University (Japan) Dec 2019.
+% The original code was extended to vector-measurement by Tohoku University (Japan) Dec 2019.
 
 %% see paper Sensor Selection via Convex Optimization
 %% www.stanford.edu/~boyd/papers/sensor_selection.html
