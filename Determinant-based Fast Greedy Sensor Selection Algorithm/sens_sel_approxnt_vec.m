@@ -1,9 +1,11 @@
 function [zhat, L, ztilde, Utilde] = sens_sel_approxnt_vec(A, k, maxiteration) 
-%
-% see paper Sensor Selection via Convex Optimization
-% www.stanford.edu/~boyd/papers/sensor_selection.html
-%
-% Nov 2007 Siddharth Joshi & Stephen Boyd
+% Modified by Tohoku University (Japan) Dec 2019.
+
+%% see paper Sensor Selection via Convex Optimization
+%% www.stanford.edu/~boyd/papers/sensor_selection.html
+%%
+%% Nov 2007 Siddharth Joshi & Stephen Boyd
+
 
 % Newton's method parameters
 MAXITER  = maxiteration;
