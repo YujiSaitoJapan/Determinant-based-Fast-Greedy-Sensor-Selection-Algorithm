@@ -40,7 +40,30 @@ NOAA_OI_SST_V2 data provided by the NOAA/OAR/ESRL PSD, Boulder, Colorado, USA, f
   - makevideo_ensotrue.m (making video)
     - video_maker.m
       - display_sensors_color_for_movie.m
-
+      
+## How to cite
+If you use the Determinant-based Fast Greedy Sensor Selection Algorithm code in your work, please cite the software itself and relevent paper.
+### General software reference:
+```
+@misc{saito2019github,
+      author = {Yuji Saito},
+      title = {Determinant-based Fast Greedy Sensor Selection Algorithm},
+      howpublished = {Available online},
+      year = {2019},
+      url = {https://github.com/YujiSaitoJapan/Determinant-based-Fast-Greedy-Sensor-Selection-Algorithm}
+}
+```
+### Relevent paper reference:
+```
+@misc{saito2019determinantbased,
+      title={Determinant-based Fast Greedy Sensor Selection Algorithm}, 
+      author={Yuji Saito and Taku Nonomura and Keigo Yamada and Keisuke Asai and Yasuo Sasaki and Daisuke Tsubakino},
+      year={2019},
+      eprint={1911.08757},
+      archivePrefix={arXiv},
+      primaryClass={eess.SP}
+}
+```
 ## Author
 SAITO Yuji
 
