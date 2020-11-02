@@ -44,7 +44,7 @@ NOAA_OI_SST_V2 data provided by the NOAA/OAR/ESRL PSD, Boulder, Colorado, USA, f
 ## How to cite
 If you use the Determinant-based Fast Greedy Sensor Selection Algorithm code in your work, please cite the software itself and relevent paper.
 ### General software reference:
-```
+```bibtex
 @misc{saito2019github,
       author = {Yuji Saito},
       title = {Determinant-based Fast Greedy Sensor Selection Algorithm},
@@ -54,7 +54,7 @@ If you use the Determinant-based Fast Greedy Sensor Selection Algorithm code in 
 }
 ```
 ### Relevent paper reference:
-```
+```bibtex
 @misc{saito2019determinantbased,
       title={Determinant-based Fast Greedy Sensor Selection Algorithm}, 
       author={Yuji Saito and Taku Nonomura and Keigo Yamada and Keisuke Asai and Yasuo Sasaki and Daisuke Tsubakino},
